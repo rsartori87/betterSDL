@@ -3,6 +3,20 @@
 
 #include <SDL.h>
 
+/**
+ * @file
+ * @author Riccardo Sartori <riccardo.sartori87@gmail.com>
+ * @version 1.0
+ * @section DESCRIPTION
+ * A SDL_Window wrapper
+ */
+
+/**
+* @brief Window Class
+* @author Riccardo Sartori
+*
+* This is a wrapper around SDL_Window for use inside c++ codebases.
+*/
 class Window
 {
 public:
