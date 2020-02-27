@@ -1,10 +1,12 @@
 #include "Window.h"
+#include "InputHandler.h"
 
 int main()
 {
   Window window("Test Window", 100, 100, 640, 480);
+  InputHandler inputHandler;
 
-  SDL_Delay(10000);
+  while (inputHandler.update()) {};
   
   return 0;
 }

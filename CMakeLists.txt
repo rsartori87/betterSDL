@@ -12,7 +12,9 @@ add_executable(betterSDL
   src/main.cpp
   src/cleanup.h
   src/Window.h
-  src/Window.cpp)
+  src/Window.cpp
+  src/InputHandler.h
+  src/InputHandler.cpp)
 
 target_include_directories(betterSDL PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 target_link_libraries(betterSDL PRIVATE ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
