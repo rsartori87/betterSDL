@@ -2,14 +2,22 @@
 
 #include <iostream>
 
+#include "cleanup.h"
+
 Window::Window(const char* title, int xpos, int ypos, int width, int height)
 {
   if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
     {
       m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, 0);
-      if (m_pWindow != 0)
+      if (m_pWindow != nullptr)
 	{
 	  std::cout << "window creation succes" << std::endl;
+	  m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+	  if (m_pRenderer != nullptr)
+	    {
+	      std::cout << "renderer creation success" << std::endl;
+	      SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+	    }
 	}
       else
 	{
@@ -25,9 +33,6 @@ Window::Window(const char* title, int xpos, int ypos, int width, int height)
 Window::~Window()
 {
   std::cout << "Cleaning Window" << std::endl;
-  if (m_pWindow != nullptr)
-    {
-      SDL_DestroyWindow(m_pWindow);
-    }
+  cleanup(m_pRenderer, m_pWindow);
   SDL_Quit();
 }

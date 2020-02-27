@@ -25,6 +25,7 @@ public:
 
 private:
   SDL_Window* m_pWindow;
+  SDL_Renderer* m_pRenderer;
 };
 
 #endif

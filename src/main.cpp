@@ -1,6 +1,6 @@
 #include "Window.h"
 
-int main(int argc, char* argv[])
+int main()
 {
   Window window("Test Window", 100, 100, 640, 480);
 

@@ -10,6 +10,7 @@ find_package(SDL2_image REQUIRED)
 
 add_executable(betterSDL
   src/main.cpp
+  src/cleanup.h
   src/Window.h
   src/Window.cpp)
 
