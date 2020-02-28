@@ -12,7 +12,11 @@ int main()
   Window window("Test Window", 100, 100, 640, 480);
   InputHandler inputHandler;
 
-  while (inputHandler.update()) {
+  Event event;
+  while (event.type != EventType::QUIT) {
+    if (auto readInput = inputHandler.update()) {
+      event = *readInput;
+    }
     frameStart = SDL_GetTicks();
     frameTime = SDL_GetTicks() - frameStart;
     if (frameTime < DELAY_TIME)

@@ -2,18 +2,18 @@
 
 #include <SDL.h>
 
-bool InputHandler::update()
+std::optional<Event> InputHandler::update()
 {
-  bool run = true;
   SDL_Event event;
   while (SDL_PollEvent(&event))
     {
       switch (event.type)
 	{
 	case SDL_QUIT:
-	  run = false;
-	  break;
+	  Event event;
+	  event.type = EventType::QUIT;
+	  return event;
 	}
     }
-  return run;
+  return {};
 }
