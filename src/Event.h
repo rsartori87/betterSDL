@@ -4,7 +4,8 @@
 enum EventType
   {
    QUIT,
-   EMPTY
+   EMPTY,
+   JOYSTICK
   };
 
 class Event

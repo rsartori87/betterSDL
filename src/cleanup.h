@@ -51,4 +51,14 @@ inline void cleanup<SDL_Surface>(SDL_Surface *surf)
   SDL_FreeSurface(surf);
 }
 
+template<>
+inline void cleanup<SDL_Joystick>(SDL_Joystick *joy)
+{
+  if (!joy)
+    {
+      return;
+    }
+  SDL_JoystickClose(joy);
+}
+
 #endif

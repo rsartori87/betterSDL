@@ -23,6 +23,11 @@ public:
   Window(const char* title, int xpos, int ypos, int width, int height);
   ~Window();
 
+  SDL_Renderer* getRenderer();
+
+  void clear();
+  void render();
+
 private:
   SDL_Window* m_pWindow;
   SDL_Renderer* m_pRenderer;

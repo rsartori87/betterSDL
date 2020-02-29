@@ -3,9 +3,10 @@ project(betterSDL LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+cmake_policy(SET CMP0054 OLD)
 
 find_package(SDL2 CONFIG REQUIRED)
-if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   find_package(sdl2-image CONFIG REQUIRED)
 else()
   set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -14,6 +15,10 @@ endif()
 
 add_executable(betterSDL
   src/main.cpp
+  src/Game.h
+  src/Game.cpp
+  src/TextureManager.h
+  src/TextureManager.cpp
   src/cleanup.h
   src/Window.h
   src/Window.cpp
@@ -23,11 +28,18 @@ add_executable(betterSDL
   src/Event.h
   src/Event.cpp
   src/QuitEvent.h
-  src/QuitEvent.cpp)
+  src/QuitEvent.cpp
+  src/JoystickEvent.h
+  src/JoystickEvent.cpp
+  src/LoaderParams.h
+  src/Player.h
+  src/Player.cpp)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_link_libraries(betterSDL PRIVATE SDL2::SDL2 SDL2::SDL2main SDL2::SDL2_image)
 else()
   target_include_directories(betterSDL PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
   target_link_libraries(betterSDL PRIVATE ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 endif()
+
+file(COPY "${PROJECT_SOURCE_DIR}/assets" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
