@@ -4,7 +4,8 @@
 #include <optional>
 
 enum EventType {
-	    QUIT
+	    QUIT,
+        EMPTY
 };
 
 struct Event {

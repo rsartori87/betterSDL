@@ -3,10 +3,9 @@ project(betterSDL LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
+find_package(sdl2-image CONFIG REQUIRED)
 
 add_executable(betterSDL
   src/main.cpp
@@ -16,5 +15,4 @@ add_executable(betterSDL
   src/InputHandler.h
   src/InputHandler.cpp)
 
-target_include_directories(betterSDL PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
-target_link_libraries(betterSDL PRIVATE ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(betterSDL PRIVATE SDL2::SDL2 SDL2::SDL2main SDL2::SDL2_image)

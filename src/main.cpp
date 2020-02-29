@@ -6,13 +6,15 @@
 const int FPS = 60;
 const int DELAY_TIME = 1000.0f / FPS;
 
-int main()
+int main(int argc, char* argv[])
 {
   Uint32 frameStart, frameTime;
   Window window("Test Window", 100, 100, 640, 480);
   InputHandler inputHandler;
 
   Event event;
+  event.type = EventType::EMPTY;
+
   while (event.type != EventType::QUIT) {
     if (auto readInput = inputHandler.update()) {
       event = *readInput;
