@@ -18,7 +18,12 @@ add_executable(betterSDL
   src/Window.h
   src/Window.cpp
   src/InputHandler.h
-  src/InputHandler.cpp)
+  src/InputHandler.cpp
+  src/Vector2D.h
+  src/Event.h
+  src/Event.cpp
+  src/QuitEvent.h
+  src/QuitEvent.cpp)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   target_link_libraries(betterSDL PRIVATE SDL2::SDL2 SDL2::SDL2main SDL2::SDL2_image)

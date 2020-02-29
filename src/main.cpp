@@ -12,12 +12,11 @@ int main(int argc, char* argv[])
   Window window("Test Window", 100, 100, 640, 480);
   InputHandler inputHandler;
 
-  Event event;
-  event.type = EventType::EMPTY;
+  std::unique_ptr<Event> event = std::make_unique<Event>();
 
-  while (event.type != EventType::QUIT) {
+  while (event->getType() != EventType::QUIT) {
     if (auto readInput = inputHandler.update()) {
-      event = *readInput;
+      event = std::move(*readInput);
     }
     frameStart = SDL_GetTicks();
     frameTime = SDL_GetTicks() - frameStart;

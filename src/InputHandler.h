@@ -2,20 +2,16 @@
 #define INPUT_HANDLER_H
 
 #include <optional>
+#include <memory>
 
-enum EventType {
-	    QUIT,
-        EMPTY
-};
-
-struct Event {
-  EventType type;
-};
+#include "Vector2D.h"
+#include "Event.h"
 
 class InputHandler
 {
 public:
-  std::optional<Event> update();
+  InputHandler();
+  std::optional<std::unique_ptr<Event>> update();
 };
 
 #endif

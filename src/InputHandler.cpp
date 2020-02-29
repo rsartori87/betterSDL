@@ -2,7 +2,17 @@
 
 #include <SDL.h>
 
-std::optional<Event> InputHandler::update()
+#include "QuitEvent.h"
+
+InputHandler::InputHandler()
+{
+  if (SDL_WasInit(SDL_INIT_JOYSTICK))
+    {
+      SDL_InitSubSystem(SDL_INIT_JOYSTICK);
+    }
+}
+
+std::optional<std::unique_ptr<Event>> InputHandler::update()
 {
   SDL_Event event;
   while (SDL_PollEvent(&event))
@@ -10,9 +20,7 @@ std::optional<Event> InputHandler::update()
       switch (event.type)
 	{
 	case SDL_QUIT:
-	  Event event;
-	  event.type = EventType::QUIT;
-	  return event;
+	  return std::make_unique<QuitEvent>();
 	}
     }
   return {};
